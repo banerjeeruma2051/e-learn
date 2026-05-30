@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Adjust this if your default branch is different
+      - main
 
 permissions:
   contents: read
@@ -23,20 +23,17 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: elearn-frontend/package-lock.json
 
       - name: Install dependencies
         run: npm install
-        working-directory: elearn-frontend
 
       - name: Build project
         run: npm run build
-        working-directory: elearn-frontend
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: elearn-frontend/build
+          path: build
 
   deploy:
     needs: build
